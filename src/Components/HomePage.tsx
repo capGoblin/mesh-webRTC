@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import io from "socket.io-client";
 import Video from "./Video";
+import SideBar from "./SideBar";
 import { WebRTCUser } from "../types/index";
 // import Draw from "./Components/Draw";
 // import TextEditor from "./Components/TextEditor";
@@ -207,8 +208,9 @@ const HomePage = () => {
 
   return (
     <>
+      <SideBar />
       <div>
-        <video
+        {/* <video
           style={{
             width: 240,
             height: 240,
@@ -221,7 +223,7 @@ const HomePage = () => {
         />
         {users.map((user, index) => (
           <Video key={index} email={user.email} stream={user.stream} />
-        ))}
+        ))} */}
       </div>
       <div>
         {/* <TextEditor /> */}
