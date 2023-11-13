@@ -143,85 +143,87 @@ function App() {
 
   return (
     <>
-      <h1 style={{ textAlign: "center" }}>Excalidraw Example</h1>
-      <div
-        style={{ height: "500px", width: "700px" }}
-        className="custom-styles"
-      >
-        {/* <input type="textbox" onChange={(e) => setName(e.target.value)} /> */}
-        {/* <label style={{ fontSize: "16px", fontWeight: "bold" }}> */}
-        {/* <input
-            type="checkbox"
-            checked={isCollaborating}
-            onChange={() => {
-              if (!isCollaborating) {
-                const collaborators = new Map();
-                collaborators.set("id1", {
-                  username: "Doremon",
-                  avatarUrl: "../../../../img/doremon.png",
-                });
-                collaborators.set("id3", {
-                  username: "Pika",
-                  avatarUrl: "../../../../img/pika.jpeg",
-                });
-                excalidrawAPI?.updateScene({ collaborators });
-              } else {
-                excalidrawAPI?.updateScene({
-                  collaborators: new Map(),
-                });
+      <div className="flex flex-col justify-center items-center ">
+        <h1 style={{ textAlign: "center" }}>Excalidraw Example</h1>
+        <div
+          style={{ height: "500px", width: "700px" }}
+          className="custom-styles"
+        >
+          {/* <input type="textbox" onChange={(e) => setName(e.target.value)} /> */}
+          {/* <label style={{ fontSize: "16px", fontWeight: "bold" }}> */}
+          {/* <input
+              type="checkbox"
+              checked={isCollaborating}
+              onChange={() => {
+                if (!isCollaborating) {
+                  const collaborators = new Map();
+                  collaborators.set("id1", {
+                    username: "Doremon",
+                    avatarUrl: "../../../../img/doremon.png",
+                  });
+                  collaborators.set("id3", {
+                    username: "Pika",
+                    avatarUrl: "../../../../img/pika.jpeg",
+                  });
+                  excalidrawAPI?.updateScene({ collaborators });
+                } else {
+                  excalidrawAPI?.updateScene({
+                    collaborators: new Map(),
+                  });
+                }
+                setIsCollaborating(!isCollaborating);
+              }}
+            />
+            Show Collaborators
+          </label>{" "} */}
+          <Excalidraw
+            // excalidrawRef="excalidrawRef"
+            // style
+            ref={(api) => {
+              if (!excalidrawAPI) {
+                setExcalidrawAPI(api as ExcalidrawImperativeAPI | undefined);
               }
-              setIsCollaborating(!isCollaborating);
             }}
+            // onChange={throttle(savaChanges, 3000)}
+            onChange={handleDataChange}
+            // renderTopRightUI={() => (
+            // <LiveCollaborationTrigger
+            //   isCollaborating={isCollaborating}
+            //   onSelect={() => {
+            //     window.alert("You clicked on collab button");
+            //     setIsCollaborating(true);
+            //   }}
+            // />
+            // <LiveCollaborationTrigger
+            //   isCollaborating={isCollaborating}
+            //   onSelect={() => {
+            //     console.log(name);
+            //     if (!isCollaborating) {
+            //       const collaborators = new Map();
+            //       collaborators.set("SAF", {
+            //         username: name,
+            //         avatarUrl: "../../../../img/doremon.png",
+            //       });
+            //       collaborators.set("asfsafas", {
+            //         username: "some name",
+            //         avatarUrl: "../../../../img/doremon.png",
+            //       });
+            //
+            //       excalidrawAPI?.updateScene({
+            //         collaborators: collaborators,
+            //       });
+            //       console.log(collaborators);
+            //     } else {
+            //       excalidrawAPI?.updateScene({
+            //         collaborators: new Map(),
+            //       });
+            //     }
+            //     setIsCollaborating(true);
+            //   }}
+            // />
+            // )}
           />
-          Show Collaborators
-        </label>{" "} */}
-        <Excalidraw
-          // excalidrawRef="excalidrawRef"
-          // style
-          ref={(api) => {
-            if (!excalidrawAPI) {
-              setExcalidrawAPI(api as ExcalidrawImperativeAPI | undefined);
-            }
-          }}
-          // onChange={throttle(savaChanges, 3000)}
-          onChange={handleDataChange}
-          // renderTopRightUI={() => (
-          // <LiveCollaborationTrigger
-          //   isCollaborating={isCollaborating}
-          //   onSelect={() => {
-          //     window.alert("You clicked on collab button");
-          //     setIsCollaborating(true);
-          //   }}
-          // />
-          // <LiveCollaborationTrigger
-          //   isCollaborating={isCollaborating}
-          //   onSelect={() => {
-          //     console.log(name);
-          //     if (!isCollaborating) {
-          //       const collaborators = new Map();
-          //       collaborators.set("SAF", {
-          //         username: name,
-          //         avatarUrl: "../../../../img/doremon.png",
-          //       });
-          //       collaborators.set("asfsafas", {
-          //         username: "some name",
-          //         avatarUrl: "../../../../img/doremon.png",
-          //       });
-          //
-          //       excalidrawAPI?.updateScene({
-          //         collaborators: collaborators,
-          //       });
-          //       console.log(collaborators);
-          //     } else {
-          //       excalidrawAPI?.updateScene({
-          //         collaborators: new Map(),
-          //       });
-          //     }
-          //     setIsCollaborating(true);
-          //   }}
-          // />
-          // )}
-        />
+        </div>
       </div>
     </>
   );

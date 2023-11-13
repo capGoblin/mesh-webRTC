@@ -4,8 +4,8 @@ import Video from "./Video";
 import SideBar from "./SideBar";
 import { WebRTCUser } from "../types/index";
 // import Draw from "./Components/Draw";
-// import TextEditor from "./Components/TextEditor";
-// import Draw from "./Components/Draw";
+import TextEditor from "./TextEditor";
+import Draw from "./Draw";
 
 const pc_config = {
   iceServers: [
@@ -205,27 +205,39 @@ const HomePage = () => {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [createPeerConnection, getLocalStream]);
+  const [ya, setya] = useState<string>("");
+
+  const handleChildData = (data: string) => {
+    // This function is passed to the child as a prop
+    // It updates the state in the parent with the data received from the child
+    setya("Video");
+    console.log(data);
+  };
 
   return (
     <>
-      <SideBar />
+      {/* <SideBar clickedIcon={handleChildData} /> */}
       <div>
-        {/* <video
-          style={{
-            width: 240,
-            height: 240,
-            margin: 5,
-            backgroundColor: "black",
-          }}
-          muted
-          ref={localVideoRef}
-          autoPlay
-        />
-        {users.map((user, index) => (
-          <Video key={index} email={user.email} stream={user.stream} />
-        ))} */}
+        <div className="flex max-w-max justify-center items-center">
+          <video
+            style={{
+              width: 240,
+              height: 240,
+              margin: 5,
+              backgroundColor: "black",
+            }}
+            muted
+            ref={localVideoRef}
+            autoPlay
+          />
+          {users.map((user, index) => (
+            <Video key={index} email={user.email} stream={user.stream} />
+          ))}
+        </div>
       </div>
       <div>
+        {/* {ya === "Draw" ? <Draw /> : null}
+        {ya === "FileText" ? <TextEditor /> : null} */}
         {/* <TextEditor /> */}
         {/* <Draw /> */}
       </div>
