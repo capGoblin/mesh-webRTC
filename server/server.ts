@@ -34,13 +34,13 @@ interface UserData {
 	[room: string]: Users[];
 }
 
-interface socketToRoom {
+interface SocketToRoom {
 	[id: string]: string;
 }
 
 const users: UserData = {};
 
-const socketToRoom: socketToRoom = {};
+const socketToRoom: SocketToRoom = {};
 
 const maximum = 4;
 
@@ -68,6 +68,16 @@ io.on('connection', (socket) => {
 		io.sockets.to(socket.id).emit('all_users', usersInThisRoom);
 	});
 
+	socket.on("send-data", (data) => {
+		console.log(`${data} is in server`);
+  
+		// await socket.join(roomId);
+		// setTimeout(() => {
+		// Emit the "receive-data" event after a 2-second delay
+		socket.broadcast.emit("receive-data", data);
+		// }, 5000);
+	  });
+
 	socket.on('send-changes', async (delta) => {
 		console.log('text is in server');
 
@@ -77,15 +87,7 @@ io.on('connection', (socket) => {
 		socket.broadcast.emit('receive-changes', delta);
 	});
 
-	// socket.on("send-data", (data) => {
-	//   console.log(`${data} is in server`);
 
-	//   // await socket.join(roomId);
-	//   // setTimeout(() => {
-	//   // Emit the "receive-data" event after a 2-second delay
-	//   socket.broadcast.emit("receive-data", data);
-	//   // }, 5000);
-	// });
 
 	socket.on('offer', (data) => {
 		// console.log(data.sdp);
